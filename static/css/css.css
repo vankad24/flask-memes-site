@@ -88,6 +88,17 @@ main > div > div:last-child > div:last-child > div{ width: 50px;
 .newPost>textarea, img, input {
   margin-bottom: 10px
 }
+.flash{
+  font-size: 17px;
+  border-radius: 10px;
+  padding: 5px;
+}
+.flash.success{
+    background-color:DeepSkyBlue;
+}
+.flash.error{
+  background-color: Plum;
+}
 
 .delit{
   width: 50px;

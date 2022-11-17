@@ -56,6 +56,18 @@ main > div:nth-child(2n){
 .newPost>label {
   margin-bottom: 10px;
 }
+.flash{
+  font-size: 17px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 5px;
+}
+.flash.success{
+    background-color:DeepSkyBlue;
+}
+.flash.error{
+  background-color: Plum;
+}
 
 .delit{
   width: 40px;
