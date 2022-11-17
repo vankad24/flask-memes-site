@@ -11,9 +11,8 @@
 
       <form action="/" class="newPost" method="post">
         <textarea name="message" placeholder="Введите ваше сообщение"></textarea>
-        <img onclick="file.click()" src="{{ url_for('static', filename='images/rats.jpg') }}" width="100%" style="display:none"></img>
         <input id='file' type="file" name='img'>
-        <button type="submit">Отправить</button>
+        <input type="submit" value="Отправить">
       </form>
 
       <main>
