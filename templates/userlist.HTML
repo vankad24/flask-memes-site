@@ -1,15 +1,15 @@
 <html>
     <head>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="css1.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/css1.css') }}">
     </head>
     <body>
       <header>
         <a href="./">К ленте</a>
       </header>
 
-      <form class="newPost" method="post">
-        <label>Введите имя пользователя:<input type="text" name="nikname"></label>
+      <form action="/userlist" class="newPost" method="post">
+        <label>Введите имя пользователя:<input type="text" name="nickname"></label>
         <label>Введите пароль:<input type="text" name="password"></label>
         <button type="submit">Отправить</button>
       </form>
@@ -37,5 +37,5 @@
         </div>
       </main>
     </body>
-    <script src="./script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </html>

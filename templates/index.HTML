@@ -2,16 +2,17 @@
 <html>
     <head>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="css.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/css.css') }}">
     </head>
     <body>
       <header>
-        <a href="userlist.HTML">К пользователям</a>
+        <a href="userlist">К пользователям</a>
       </header>
 
-      <form class="newPost" method="post">
-        <textarea name="massage" placeholder="Введите ваше сообщение"></textarea>
-        <img onclick="file.click()" src='picture3.jpg' width="100%" style="display:none"></img> <input id='file' type="file" name='img' accept="image/png, image/jpeg">
+      <form action="/" class="newPost" method="post">
+        <textarea name="message" placeholder="Введите ваше сообщение"></textarea>
+        <img onclick="file.click()" src="{{ url_for('static', filename='images/rats.jpg') }}" width="100%" style="display:none"></img>
+        <input id='file' type="file" name='img'>
         <button type="submit">Отправить</button>
       </form>
 
@@ -22,7 +23,7 @@
           <div class="nik">hello</div>
           <div>
             <div>Это просто крыски</div>
-            <img src="img/picture3.jpg" width="80%"></img>
+            <img src="{{ url_for('static', filename='images/rats.jpg') }}" width="80%"></img>
             <div>
               <div class='dislike' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
               <div class='like' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
@@ -35,7 +36,7 @@
           <div class="nik">hello</div>
           <div>
             <div>Это просто лес</div>
-            <img src="img/forest-waterfall-wilderness-stream-body-of-water-rainforest-ravine-wasserfall-water-feature-watercourse-5554.jpg" width="80%"></img>
+            <img src="{{ url_for('static', filename='images/waterfall.jpg') }}" width="80%"></img>
             <div>
               <div class='dislike' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
               <div class='like' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
@@ -49,7 +50,7 @@
           <div>
             <div>Похитителя картофеля в сыктывкаре нашли из-за сугроба. Преступник залез в чужой сарай, украл несколько мешков картошки и скрылся
             на своей машине. правда, на сугробе, в который он въехал, отпечатался его номерной знак. Это позволило в кратчайшие сроки установить личность молодого человека</div>
-            <img src="img/MZgdl8J2hxne6351kA1JnQ.jpeg" width="80%"></img>
+            <img src="{{ url_for('static', filename='images/ha-ha.jpeg') }}" width="80%"></img>
             <div>
               <div class='dislike' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
               <div class='like' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
@@ -58,7 +59,7 @@
         </div>
 
       </main>
-      <script src="./script.js"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     </body>
 </html>
