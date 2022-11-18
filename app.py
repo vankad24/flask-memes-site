@@ -29,7 +29,7 @@ def index():
             flash('Пост создан', category='success')
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
         else:
-            flash('Ошибка', category='error')
+            flash('Недопустимый формат файла', category='error')
     return render_template('index.html')
 
 
