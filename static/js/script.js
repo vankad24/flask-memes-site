@@ -41,13 +41,19 @@ function divval(event){
   deleteAllCookies()
   document.cookie='user='+ encodeURIComponent(event.firstElementChild.innerHTML)
   user = event.firstElementChild.innerHTML
-  if (getCookie('user')!='000000' && user!='000000'){
+  if (user != '0'){
     document.getElementsByClassName('newPost')[0].style.display='none'
-    for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
+    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++){
+      document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
+    }
   }
+  //if (getCookie('user')!='000000' && user!='000000'){
+  //  document.getElementsByClassName('newPost')[0].style.display='none'
+  //  for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
+  //}
   else{
     document.getElementsByClassName('newPost')[0].removeAttribute('style')
-    for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.removeAttribute('style')
+    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.removeAttribute('style')
   }
   event.style.boxShadow = "0 0 4px 3px #bac6d2"
 }

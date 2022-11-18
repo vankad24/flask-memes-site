@@ -19,26 +19,13 @@
 
       <main>
         <h1>Пользователи</h1>
+        {% for m in users -%}
         <div onclick="divval(this)">
-          <div>000000</div>
-          <div>Admin</div>
+          <div>{{m.id}}</div>
+          <div>{{m.nickname}}</div>
           <div class="delit"></div>
         </div>
-        <div onclick="divval(this)">
-          <div>000001</div>
-          <div>Vana</div>
-          <div class="delit"></div>
-        </div>
-        <div onclick="divval(this)">
-          <div>000002</div>
-          <div>Katya</div>
-          <div class="delit"></div>
-        </div>
-        <div onclick="divval(this)">
-          <div>000003</div>
-          <div>yula</div>
-          <div class="delit"></div>
-        </div>
+        {% endfor -%}
       </main>
     </body>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

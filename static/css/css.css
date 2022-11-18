@@ -62,17 +62,28 @@ main > div > div:last-child > div:first-child{
 main > div > div:last-child > div:last-child{
   display: flex;
   flex-direction: row-reverse;
+  width: 100%;
 }
-main > div > div:last-child > div:last-child > div{ width: 50px;
+main > div > div:last-child > div:last-child > div{
   height: 50px;
   margin: 5px;
-  border-radius: 50%;
+}
+.time{
+  width: 130px;
+  font-size: 14px;
+  color: grey;
 }
 .dislike {
   background-image: url('../images/dislike.png');
+  background-repeat: no-repeat;
+  width: 50px;
+  border-radius: 50%;
 }
 .like {
   background-image: url('../images/like.png');
+  background-repeat: no-repeat;
+  width: 50px;
+  border-radius: 50%;
 }
 .dislike:hover, .like:hover {
   box-shadow: inset 0 0 4px 4px grey;

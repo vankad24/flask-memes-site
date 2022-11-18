@@ -25,12 +25,12 @@ h1{
   margin: -20px 0px;
   text-align: center;
 }
-main { margin-top: 50px;
+main {
+  margin-top: 50px;
   padding-left: 20%;
   padding-right: 20%;
   margin-bottom: 7%;
 }
-
 main > div {
   display: grid;
   grid-template-columns: 200px auto;
