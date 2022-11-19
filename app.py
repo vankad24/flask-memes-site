@@ -110,8 +110,7 @@ def userlist():
                 flash('Имя/пароль слишком длинное. Допускается 20 символов', category='error')
             else:
                 flash('Имя/пароль слишком короткое', category='error')
-            nick1 = nick(dbase)
-            content = render_template('userlist.html', users=dbase.getUsers(), nickname=nick1)
+            content = render_template('userlist.html', users=dbase.getUsers())
             result = make_response(content)
         else:
 
