@@ -27,7 +27,7 @@ class FDataBase:
         return True
 
     def getPosts(self):
-        sql = '''SELECT * FROM posts'''
+        sql = '''SELECT posts.*, users.nickname FROM posts, users WHERE users.id = posts.id_user ORDER BY posts.id DESC'''
         try:
             self.__cur.execute(sql)
             res = self.__cur.fetchall()
@@ -41,7 +41,7 @@ class FDataBase:
         try:
             tm = datetime.datetime.now()  # текущее время
             tm = tm.strftime("%d-%m-%Y %H:%M")
-            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?, ?, ?)", ('Admin', message, image, 0, 0, tm))
+            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?, ?, ?)", (0, message, image, 0, 0, tm))
             self.__db.commit()
         except sqlite3.Error as e:
             print("Ошибка добавления пользователя в БД " + str(e))

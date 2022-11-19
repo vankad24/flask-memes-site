@@ -23,7 +23,7 @@
         {% for m in posts -%}
         <div id='{{m.id}}' class='flex'>
           <div class="delit"></div>
-          <div class="nik">{{m.user_nick}}</div>
+          <div class="nik">{{m.nickname}}</div>
           <div>
             <div>{{m.message}}</div>
             <img src="static/images/{{m.image}}" width="80%"></img>
@@ -35,21 +35,6 @@
           </div>
         </div>
         {% endfor -%}
-        <!--<div id='000002' class='flex'>
-          <div class="delit"></div>
-          <div class="nik">hello</div>
-          <div>
-            <div>Похитителя картофеля в сыктывкаре нашли из-за сугроба. Преступник залез в чужой сарай, украл несколько мешков картошки и скрылся
-            на своей машине. правда, на сугробе, в который он въехал, отпечатался его номерной знак. Это позволило в кратчайшие сроки установить
-             личность молодого человека</div>
-            <img src="{{ url_for('static', filename='images/ha-ha.jpeg') }}" width="80%"></img>
-            <div>
-              <div class='dislike' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
-              <div class='like' onclick="dis_like(this)" style="background-color:#bac6d2"></div>
-            </div>
-          </div>
-        </div>-->
-
       </main>
       <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
