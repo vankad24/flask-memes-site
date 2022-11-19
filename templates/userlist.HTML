@@ -20,9 +20,16 @@
       <main>
         <h1>Пользователи</h1>
         {% for m in users -%}
-        <div onclick="divval(this)">
+        <div>
           <div>{{m.id}}</div>
           <div>{{m.nickname}}</div>
+          <div style="display: none">{{m.password}}</div>
+          <div>
+            <form action="/userlist" method="post" enctype="multipart/form-data">
+              <input type="text" name="id_user" value="{{m.id}}" style="display: none">
+              <button type="submit" class="color" onclick="divval(this)">Сменить пользователя</button>
+            </form>
+          </div>
           <div class="delit"></div>
         </div>
         {% endfor -%}

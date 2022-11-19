@@ -37,11 +37,11 @@ class FDataBase:
             print("Ошибка чтения из posts")
         return []
 
-    def addPost(self, message, image):
+    def addPost(self, message, image, id_user):
         try:
             tm = datetime.datetime.now()  # текущее время
             tm = tm.strftime("%d-%m-%Y %H:%M")
-            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?, ?, ?)", (0, message, image, 0, 0, tm))
+            self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?, ?, ?)", (id_user, message, image, 0, 0, tm))
             self.__db.commit()
         except sqlite3.Error as e:
             print("Ошибка добавления пользователя в БД " + str(e))

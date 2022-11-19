@@ -1,7 +1,7 @@
 import os
 import sqlite3
 from FDataBase import FDataBase
-from flask import Flask, flash, request, redirect, url_for, render_template, g
+from flask import Flask, flash, request, redirect, url_for, render_template, g, make_response
 from markupsafe import escape
 from werkzeug.exceptions import HTTPException
 
@@ -55,6 +55,7 @@ def allowed_file(filename):  # проверка картинка ли загру
 def index():
     db = get_db()
     dbase = FDataBase(db)
+    global id_user
     if request.method == 'POST':
         message = request.form.get('message')  # получение текста
         f = request.files['img']
@@ -66,8 +67,9 @@ def index():
                     noRepetitions = False
                     break
             if noRepetitions:
-                res = dbase.addPost(message, f.filename)
-                print(f.filename)
+                if request.cookies.get('id_user'):
+                    id_user = request.cookies.get('id_user')
+                res = dbase.addPost(message, f.filename, int(id_user))
                 if not res:
                     flash('Ошибка добавления поста', category='error')
                 else:
@@ -77,31 +79,45 @@ def index():
     return render_template('index.html', posts=dbase.getPosts())
 
 
+id_user = '0'
+
+
 @app.route('/userlist', methods=['GET', 'POST'])  # стр userlist
 def userlist():
     db = get_db()
     dbase = FDataBase(db)
+    global id_user
+    content = render_template('userlist.html', users=dbase.getUsers())
+    result = make_response(content)
     if request.method == 'POST':
-        nickname = request.form.get('nickname')  # получение имени пользователя
-        password = request.form.get('password')  # получение пароля
-        if len(nickname) <= 20 and len(password) <= 20 \
-                and len(nickname) >= 4 and len(password) >= 4:
-            noRepetitions = True
-            for m in dbase.getUsers():  # проверка есть ли уже такой пользователь
-                if m[1] == nickname and m[2] == password:
-                    noRepetitions = False
-                    break
-            if noRepetitions:
-                res = dbase.addUser(nickname, password)
-                if not res:
-                    flash('Ошибка добавления пользователя', category='error')
-                else:
-                    flash('Пользователь создан', category='success')
-        elif len(nickname) > 20 or len(password) > 20:
-            flash('Имя/пароль слишком длинное. Допускается 20 символов', category='error')
+        if request.form.get('nickname'):
+            nickname = request.form.get('nickname')  # получение имени пользователя
+            password = request.form.get('password')  # получение пароля
+            if len(nickname) <= 20 and len(password) <= 20 \
+                    and len(nickname) >= 4 and len(password) >= 4:
+                noRepetitions = True
+                for m in dbase.getUsers():  # проверка есть ли уже такой пользователь
+                    if m[1] == nickname and m[2] == password:
+                        noRepetitions = False
+                        break
+                if noRepetitions:
+                    res = dbase.addUser(nickname, password)
+                    if not res:
+                        flash('Ошибка добавления пользователя', category='error')
+                    else:
+                        flash('Пользователь создан', category='success')
+            elif len(nickname) > 20 or len(password) > 20:
+                flash('Имя/пароль слишком длинное. Допускается 20 символов', category='error')
+            else:
+                flash('Имя/пароль слишком короткое', category='error')
+            content = render_template('userlist.html', users=dbase.getUsers())
+            result = make_response(content)
         else:
-            flash('Имя/пароль слишком короткое', category='error')
-    return render_template('userlist.html', users=dbase.getUsers())  # , users = dbase.getUsers()
+            content = render_template('userlist.html', users=dbase.getUsers())
+            result = make_response(content)
+            id_user1 = request.form.get('id_user')
+            result.set_cookie('id_user', id_user1)
+    return result
 
 
 @app.errorhandler(HTTPException)
