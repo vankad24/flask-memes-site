@@ -33,7 +33,7 @@ main {
 }
 main > div {
   display: grid;
-  grid-template-columns: 20% 40% auto;
+  grid-template-columns: 10% 40% auto;
   margin-top: 5%;
   font-size: 20pt;
   padding: 10px;

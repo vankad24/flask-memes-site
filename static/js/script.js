@@ -22,12 +22,11 @@ function getCookie(name) {
 }
 
 if (document.cookie.length == 0) {
-  document.cookie='user=000000'
-  let user = '000000'
+  document.cookie='id_user=0'
 }
 
 if (location.href.match(/[\d\w-]+\.\w+$/)=='userlist.HTML'){
-  if (getCookie('user')!='000000' && user!='000000') for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++){
+  if (getCookie('id_user')!='0') for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++){
     document.getElementsByClassName('newPost')[0].style.display='none'
     document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
   }
@@ -36,26 +35,28 @@ if (location.href.match(/[\d\w-]+\.\w+$/)=='userlist.HTML'){
 }
 
 function divval(event){
-  let pass = prompt('Введите пароль:')
-  for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].removeAttribute('style')
-  deleteAllCookies()
-  document.cookie='user='+ encodeURIComponent(event.firstElementChild.innerHTML)
-  user = event.firstElementChild.innerHTML
-  if (user != '0'){
-    document.getElementsByClassName('newPost')[0].style.display='none'
-    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++){
-      document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
-    }
-  }
+  setTimeout(location.reload(), 1000);
+  return false;  
+//  let pass = prompt('Введите пароль:')
+//  for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].removeAttribute('style')
+//  deleteAllCookies()
+///  document.cookie='id_user='+ encodeURIComponent(event.firstElementChild.innerHTML)
+//  user = event.firstElementChild.innerHTML
+//  if (user != '0'){
+//    document.getElementsByClassName('newPost')[0].style.display='none'
+//    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++){
+//      document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
+//    }
+//  }
   //if (getCookie('user')!='000000' && user!='000000'){
   //  document.getElementsByClassName('newPost')[0].style.display='none'
   //  for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
   //}
-  else{
-    document.getElementsByClassName('newPost')[0].removeAttribute('style')
-    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.removeAttribute('style')
-  }
-  event.style.boxShadow = "0 0 4px 3px #bac6d2"
+//  else{
+//    document.getElementsByClassName('newPost')[0].removeAttribute('style')
+//    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.removeAttribute('style')
+//  }
+//  event.style.boxShadow = "0 0 4px 3px #bac6d2"
 }
 
 //fetch('http://numbersapi.com/24')
