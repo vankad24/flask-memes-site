@@ -34,9 +34,13 @@ if (location.href.match(/[\d\w-]+\.\w+$/)=='userlist.HTML'){
     for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.removeAttribute('style')
 }
 
+user_id.innerHTML='id пользователя: ' + getCookie('id_user')
+
 function divval(event){
-  setTimeout(location.reload(), 1000);
-  return false;  
+  ///setTimeout(location.reload(),8000)
+
+
+
 //  let pass = prompt('Введите пароль:')
 //  for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].removeAttribute('style')
 //  deleteAllCookies()

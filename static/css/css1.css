@@ -3,17 +3,22 @@ body {
   font-family: sans-serif;
 }
 header{
-  height: 60px;
+  display: grid;
+  grid-template-columns: auto auto;
   background-color: lightblue;
-  text-align: right;
-  padding-top: 30px;
-  padding-right: 30px;
+  padding: 30px;
+}
+header > div {
+  font-size: 16pt
 }
 header > a {
+  width: 20%;
   text-decoration: none;
+  text-align: center;
   background-color: #e9edf5;
   color: black;
   padding: 10px;
+  margin-left: 70%;
   vertical-align: middle;
   border-radius: 20px;
 }
@@ -45,7 +50,9 @@ main > div{
 main > div:nth-child(2n){
   background-color: lightblue;
 }
-
+.pass > label{
+  margin-bottom: 40px;
+}
 .newPost{
   width: 17%;
   display: flex;

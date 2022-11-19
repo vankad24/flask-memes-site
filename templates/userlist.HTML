@@ -5,7 +5,7 @@
     </head>
     <body>
       <header>
-        <div>{{nickname}}</div>
+        <div id='user_id'></div>
         <a href="./">К ленте</a>
       </header>
 
@@ -25,10 +25,10 @@
           <div>{{m.id}}</div>
           <div>{{m.nickname}}</div>
           <div>
-            <form action="/userlist" method="post" enctype="multipart/form-data">
+            <form action="/userlist" method="post" enctype="multipart/form-data" class='pass'>
               <input type="text" name="id_user" value="{{m.id}}" style="display: none">
               <input type="text" name="password" value="{{m.password}}" style="display: none">
-              <input type="text" name="password_user">
+              <label>Введите пароль: <input type="text" name="password_user"></label>
               <button type="submit" class="color" onclick="divval(event)">Сменить пользователя</button>
             </form>
           </div>
