@@ -21,12 +21,6 @@ app.config.from_object(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'firstbd.db')))
 
 
-def nick(dbase):
-    for m in dbase.getUsers():
-        if m[0] == int(request.cookies.get('id_user')):
-            nick12 = m[1]
-    return nick12
-
 def connect_db():
     conn = sqlite3.connect(app.config['DATABASE'])
     conn.row_factory = sqlite3.Row
@@ -81,9 +75,8 @@ def index():
                 else:
                     flash('Пост создан', category='success')
         else:
-            flash('Недопустимый формат файла', category='error')
-    nick1 = nick(dbase)
-    return render_template('index.html', posts=dbase.getPosts(), nickname=nick1)
+            flash('Недопустимый формат файла', category='error')        
+    return render_template('index.html', posts=dbase.getPosts())
 
 
 id_user = '0'
@@ -94,8 +87,7 @@ def userlist():
     db = get_db()
     dbase = FDataBase(db)
     global id_user
-    nick1 = nick(dbase)
-    content = render_template('userlist.html', users=dbase.getUsers(), nickname=nick1)
+    content = render_template('userlist.html', users=dbase.getUsers())
     result = make_response(content)
     if request.method == 'POST':
         if request.form.get('nickname'):
@@ -122,8 +114,14 @@ def userlist():
             content = render_template('userlist.html', users=dbase.getUsers(), nickname=nick1)
             result = make_response(content)
         else:
-            nick1 = nick(dbase)
-            content = render_template('userlist.html', users=dbase.getUsers(), nickname=nick1)
+
+            if 'id_user' not in request.cookies:
+                content = render_template('userlist.html', users=dbase.getUsers())
+                result = make_response(content)
+                result.set_cookie('id_user', '0')
+                return result
+                
+            content = render_template('userlist.html', users=dbase.getUsers())
             result = make_response(content)
             id_user1 = request.form.get('id_user')
             password = request.form.get('password')
@@ -131,7 +129,6 @@ def userlist():
             if password == password_user:
                 result.set_cookie('id_user', id_user1)
     return result
-
 
 @app.errorhandler(HTTPException)
 def handle_exception(e):
