@@ -32,7 +32,9 @@
               <button type="submit" class="color" onclick="divval(event)">Сменить пользователя</button>
             </form>
           </div>
+		  {% if id==m.id or id == 0 %}
           <div class="delit"></div>
+		  {% endif %}
         </div>
         {% endfor -%}
       </main>

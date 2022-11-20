@@ -31,17 +31,16 @@ def allowed_file(filename):  # проверка картинка ли загру
 
 @app.route('/', methods=['GET', 'POST'])  # основная стр
 def index():
+    id_user = request.cookies.get('id_user',0,int)
     if request.method == 'POST':
         message = request.form.get('message')  # получение текста
         f = request.files['img']
         if not (f and allowed_file(f.filename)):  # сохранение картинки
             flash('Недопустимый формат файла', category='error')
         elif not data_base.existPost(message,f.filename):# проверка есть ли уже такой пост
-            id_user = int(request.cookies.get('id_user'))
             data_base.addPost(message, f.filename, id_user)
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
-        
-    return render_template('index.html', posts=data_base.getPosts())
+    return render_template('index.html', posts=data_base.getPosts(), id=id_user)
 
 
 @app.route('/userlist', methods=['GET', 'POST'])  # стр userlist
@@ -62,11 +61,11 @@ def userlist():
             input_password = request.form.get('password_user')
             real_password = data_base.getUser(id_user)['password']
             if input_password==real_password:
-                content = render_template('userlist.html', users=data_base.getUsers())
+                content = render_template('userlist.html', users=data_base.getUsers(), id = int(id_user))
                 result = make_response(content)
                 result.set_cookie('id_user', id_user)
                 return result
-    return render_template('userlist.html', users=data_base.getUsers())
+    return render_template('userlist.html', users=data_base.getUsers(), id = request.cookies.get('id_user',0,int))
 
 #вывод ошибок с котами
 @app.errorhandler(HTTPException)

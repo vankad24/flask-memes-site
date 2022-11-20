@@ -23,7 +23,9 @@
         <h1>Лента</h1>
         {% for m in posts -%}
         <div id='{{m.id}}' class='flex'>
+		  {% if id==m.id_user or id == 0 %}
           <div class="delit"></div>
+		  {% endif %}
           <div class="nik">{{m.nickname}}</div>
           <div>
             <div>{{m.message}}</div>
