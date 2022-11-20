@@ -12,6 +12,7 @@
       <form action="/userlist" class="newPost" method="post" enctype="multipart/form-data">
         <label>Введите имя пользователя:<input type="text" name="nickname" required></label>
         <label>Введите пароль:<input type="text" name="password" required></label>
+		<input type="text" name="action" value="create" style="display: none">
         <button type="submit">Отправить</button>
         {% for cat, msg in get_flashed_messages(True) %}
         <div class="flash {{cat}}">{{msg}}</div>
@@ -27,7 +28,6 @@
           <div>
             <form action="/userlist" method="post" enctype="multipart/form-data" class='pass'>
               <input type="text" name="id_user" value="{{m.id}}" style="display: none">
-              <input type="text" name="password" value="{{m.password}}" style="display: none">
               <label>Введите пароль: <input type="text" name="password_user"></label>
               <button type="submit" class="color" onclick="divval(event)">Сменить пользователя</button>
             </form>
