@@ -12,7 +12,6 @@
       <form action="/userlist" class="newPost" method="post" enctype="multipart/form-data">
         <label>Введите имя пользователя:<input type="text" name="nickname" required></label>
         <label>Введите пароль:<input type="text" name="password" required></label>
-		<input type="text" name="action" value="create" style="display: none">
         <button type="submit">Отправить</button>
         {% for cat, msg in get_flashed_messages(True) %}
         <div class="flash {{cat}}">{{msg}}</div>
