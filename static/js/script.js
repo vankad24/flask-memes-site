@@ -36,44 +36,9 @@ if (location.href.match(/[\d\w-]+\.\w+$/)=='userlist.HTML'){
 
 user_id.innerHTML='id пользователя: ' + getCookie('id_user')
 
-function divval(event){
-  ///setTimeout(location.reload(),8000)
-
-
-
-//  let pass = prompt('Введите пароль:')
-//  for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].removeAttribute('style')
-//  deleteAllCookies()
-///  document.cookie='id_user='+ encodeURIComponent(event.firstElementChild.innerHTML)
-//  user = event.firstElementChild.innerHTML
-//  if (user != '0'){
-//    document.getElementsByClassName('newPost')[0].style.display='none'
-//    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++){
-//      document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
-//    }
-//  }
-  //if (getCookie('user')!='000000' && user!='000000'){
-  //  document.getElementsByClassName('newPost')[0].style.display='none'
-  //  for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.style.display='none'
-  //}
-//  else{
-//    document.getElementsByClassName('newPost')[0].removeAttribute('style')
-//    for (let i=1; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.removeAttribute('style')
-//  }
-//  event.style.boxShadow = "0 0 4px 3px #bac6d2"
-}
-
-//fetch('http://numbersapi.com/24')
-//.then(promiseResult => { return promiseResult.text() })
-//.then(function(html) {
-  //var parser = new DOMParser();
-//  var doc = parser.parseFromString(html, "text/html");
-  //document.body.getElementsByTagName('main').appendChild(doc.documentElement)
-//})
-
 function dis_like(event){
   if (event.style.backgroundColor == 'rgb(186, 198, 210)'){
-    if (event.classList.contains('dislike')) event.style.backgroundColor = '#d0a09f'
+    if (event.classList.contains('dis')) event.style.backgroundColor = '#d0a09f'
     else event.style.backgroundColor = '#96bf93'
   }
   else event.style.backgroundColor = '#bac6d2'
