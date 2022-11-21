@@ -34,14 +34,14 @@
             <div>{{m.message}}</div>
             <img src="static/images/{{m.image}}"></img>
             <div>
-              <form action="index.html" method="post">
-                <a name='dislike'>{{}}</a>
-                <button type="submit" class='dis' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
-              </form>
-              <form action="index.html" method="post">
-                <a name='like'>{{}}</a>
-                <button type="submit" class='lik' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
-              </form>
+              <div >
+                <a name='dislike'>{{m.dislikes}}</a>
+                <button class='dis' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
+              </div>
+              <div>
+                <a name='like'>{{m.likes}}</a>
+                <button class='lik' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
+              </div>
               <div class="time">{{m.time}}</div>
             </div>
           </div>
