@@ -23,7 +23,7 @@ data_base = DB(app.root_path, DATABASE_PATH, SQL_INIT_PATH)
 def log(text):
     app.logger.info(text)
 
-data_base.log = log    
+# data_base.log = log    
 
 def allowed_file(filename):  # проверка картинка ли загружена
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -88,10 +88,7 @@ def like():
     id = request.form.get('id')
     like = request.form.get('like')
     dislike = request.form.get('dislike')
-    # data_base.likePost(id,like,dislike)
-    log(id)
-    log(like)
-    log(dislike)
+    data_base.likePost(id,like,dislike)
     return "Ok"
     
 

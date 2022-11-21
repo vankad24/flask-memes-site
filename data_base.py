@@ -77,11 +77,12 @@ class DB:
     def likePost(self, post_id, likes, dislike):
         cur = self.get_db().cursor()
         try:
-            cur.execute("UPDATE posts SET likes = ?, dislikes = ? WHERE id = ?", (like, dislike, post_id,))
+            cur.execute("UPDATE posts SET likes = ?, dislikes = ? WHERE id = ?", (likes, dislike, post_id,))
             self.db.commit()
-            flash('Обновлено', category='success')
+            # flash('Обновлено', category='success')
         except sqlite3.Error as e:
-            flash('Ошибка лайка', category='error')
+            pass
+            # flash('Ошибка лайка', category='error')
 
     def existUser(self, nickname):
         sql = f'''SELECT * FROM users WHERE nickname = "{nickname}"'''
