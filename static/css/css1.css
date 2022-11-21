@@ -50,8 +50,15 @@ main > div{
 main > div:nth-child(2n){
   background-color: lightblue;
 }
+main > div > div{
+  margin-top: 15px;
+}
+.pass{
+  margin-top: -15px;
+}
 .pass > label{
-  margin-bottom: 40px;
+  font-size: 12pt;
+  margin-left: 10%;
 }
 .newPost{
   width: 17%;
@@ -92,6 +99,7 @@ font-size: 14px;
 padding: 8px 16px;
 margin: auto;
 margin-bottom: -28px;
+margin-top: 10px;
 text-decoration: none;
 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 background-color: rgb(32, 178, 170);
@@ -103,13 +111,18 @@ background-color: rgb(61, 192, 188);
 .delit{
   width: 40px;
   height: 40px;
-  background-image: url('../images/delit.png');
-  background-size: 40px;
   position: absolute;
   display:inline-block;
-  left: 85%;
-  border-radius: 50%;
+  left: 82%;
 }
-.delit:hover{
+.delit > button{
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/delit.png');
+  background-size: 100%;
+  border-radius: 50%;
+  border: 0px;
+}
+.delit > button:hover{
   box-shadow: inset 0 0 4px 4px #b3a183;
 }

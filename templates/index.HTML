@@ -24,7 +24,10 @@
         {% for m in posts -%}
         <div id='{{m.id}}' class='flex'>
 		  {% if id==m.id_user or id == 0 %}
-          <div class="delit"></div>
+          <form action="/userlist" method="post" class="delit">
+            <input type="text" name="del_id" value="{{m.id}}" style="display: none">
+            <button type="submit"></button>
+          </form>
 		  {% endif %}
           <div class="nik">{{m.nickname}}</div>
           <div>
