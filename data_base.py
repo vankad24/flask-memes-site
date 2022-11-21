@@ -131,7 +131,7 @@ class DB:
     def deleteUser(self, user_id):
         cur = self.get_db().cursor()
         try:
-            cur.execute("DELETE FROM users WHERE id = ?", (post_id,))
+            cur.execute("DELETE FROM users WHERE id = ?", (user_id,))
             self.db.commit()
             flash('Пользователь удалён', category='success')
         except sqlite3.Error as e:

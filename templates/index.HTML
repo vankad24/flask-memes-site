@@ -6,7 +6,7 @@
     </head>
     <body>
       <header>
-        <div id='user_id'></div>
+        <div>{{nickname}} (id{{id}})</div>
         <a href="userlist">К пользователям</a>
       </header>
 
@@ -24,7 +24,7 @@
         {% for m in posts -%}
         <div id='{{m.id}}' class='flex'>
 		  {% if id==m.id_user or id == 0 %}
-          <form action="/userlist" method="post" class="delit">
+          <form action="/" method="post" class="delit">
             <input type="text" name="del_id" value="{{m.id}}" style="display: none">
             <button type="submit"></button>
           </form>
@@ -35,12 +35,12 @@
             <img src="static/images/{{m.image}}"></img>
             <div>
               <form action="index.html" method="post">
-                <a name='dislike'>{{}}</a>
-                <button type="submit" class='dis' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
+                <a name='dislike'>{{m.dislikes}}</a>
+                <button class='dis' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
               </form>
               <form action="index.html" method="post">
-                <a name='like'>{{}}</a>
-                <button type="submit" class='lik' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
+                <a name='like'>{{m.likes}}</a>
+                <button class='lik' onclick="dis_like(this)" style="background-color:#bac6d2"></button>
               </form>
               <div class="time">{{m.time}}</div>
             </div>

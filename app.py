@@ -33,14 +33,18 @@ def allowed_file(filename):  # проверка картинка ли загру
 def index():
     id_user = request.cookies.get('id_user',0,int)
     if request.method == 'POST':
-        message = request.form.get('message')  # получение текста
-        f = request.files['img']
-        if not (f and allowed_file(f.filename)):  # сохранение картинки
-            flash('Недопустимый формат файла', category='error')
-        elif not data_base.existPost(message,f.filename):# проверка есть ли уже такой пост
-            data_base.addPost(message, f.filename, id_user)
-            f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
-    return render_template('index.html', posts=data_base.getPosts(), id=id_user)
+        if 'del_id' in request.form: #удаление поста
+            data_base.deletePost(request.form.get('del_id'))
+        else:
+            message = request.form.get('message')  # получение текста
+            f = request.files['img']
+            if not (f and allowed_file(f.filename)):  # сохранение картинки
+                flash('Недопустимый формат файла', category='error')
+            elif not data_base.existPost(message,f.filename):# проверка есть ли уже такой пост
+                data_base.addPost(message, f.filename, id_user)
+                f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
+    
+    return render_template('index.html', posts=data_base.getPosts(), id=id_user, nickname = data_base.getUser(id_user)['nickname'])
 
 
 @app.route('/userlist', methods=['GET', 'POST'])  # стр userlist
@@ -56,16 +60,40 @@ def userlist():
                 flash('Имя/пароль слишком длинное. Допускается 20 символов', category='error')
             elif not data_base.existUser(nickname): # проверка есть ли уже такой пользователь
                 data_base.addUser(nickname, password)
+            
+        elif 'del_id' in request.form:
+            #удалить пользователя
+            del_id = request.form.get('del_id')
+            now_id = request.cookies.get('id_user')
+            data_base.deleteUser(del_id)
+            if del_id==now_id: #заходим за админа, если удалили своего пользователя
+                return render_with_cookies(0)
         else: #войти как пользователь
-            id_user = request.form.get('id_user')
+            id_user = request.form.get('id_user', type=int)
             input_password = request.form.get('password_user')
             real_password = data_base.getUser(id_user)['password']
             if input_password==real_password:
-                content = render_template('userlist.html', users=data_base.getUsers(), id = int(id_user))
-                result = make_response(content)
-                result.set_cookie('id_user', id_user)
-                return result
-    return render_template('userlist.html', users=data_base.getUsers(), id = request.cookies.get('id_user',0,int))
+                return render_with_cookies(id_user)
+    id = request.cookies.get('id_user',0,int)
+    return render_template('userlist.html', users=data_base.getUsers(), id = id, nickname = data_base.getUser(id)['nickname'])
+
+def render_with_cookies(id_user):
+    content = render_template('userlist.html', users=data_base.getUsers(), id = id_user, nickname = data_base.getUser(id_user)['nickname'])
+    result = make_response(content)
+    result.set_cookie('id_user', str(id_user))
+    return result
+
+@app.post('/like')
+def like():
+    id = request.form.get('id')
+    like = request.form.get('like')
+    dislike = request.form.get('dislike')
+    # data_base.likePost(id,like,dislike)
+    log(id)
+    log(like)
+    log(dislike)
+    return "Ok"
+    
 
 #вывод ошибок с котами
 @app.errorhandler(HTTPException)

@@ -34,12 +34,22 @@ if (location.href.match(/[\d\w-]+\.\w+$/)=='userlist.HTML'){
     for (let i=0; i<document.getElementsByTagName('main')[0].childElementCount; i++) document.getElementsByTagName('main')[0].children[i].lastElementChild.removeAttribute('style')
 }
 
-user_id.innerHTML='id пользователя: ' + getCookie('id_user')
-
-function dis_like(event){
-  if (event.style.backgroundColor == 'rgb(186, 198, 210)'){
-    if (event.classList.contains('dis')) event.style.backgroundColor = '#d0a09f'
-    else event.style.backgroundColor = '#96bf93'
+function dis_like(el){
+  if (el.style.backgroundColor == 'rgb(186, 198, 210)'){
+    if (el.classList.contains('dislike')) el.style.backgroundColor = '#d0a09f'
+    else el.style.backgroundColor = '#96bf93'
   }
-  else event.style.backgroundColor = '#bac6d2'
+  else el.style.backgroundColor = '#bac6d2'
+  
+  let buttons = el.parentElement.parentElement
+  let likes = buttons.getElementsByTagName
+  console.log(buttons)
+  fetch('/like', {
+    method: 'POST',
+    body: new URLSearchParams({
+        'like': 24,
+        'dislike': 1,
+        'id': 4	
+    })
+});
 }
